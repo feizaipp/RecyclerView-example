@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnSelectSingleFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单选文件"/>
+        <Button
+            android:id="@+id/btnSelectMultiFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="多选文件"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnSelectSingleDir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单选文件夹"/>
+        <Button
+            android:id="@+id/btnSelectMultiDir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="多选文件夹"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnSelectSingleFileDir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单选文件或文件夹"/>
+        <Button
+            android:id="@+id/btnSelectMultiFileDir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="多选文件或文件夹"/>
+    </LinearLayout>
+
+    <TextView
+        android:text="选择的路径:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+</LinearLayout>
