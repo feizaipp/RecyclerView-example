@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,15 +16,28 @@ import java.util.Map;
 public class MyAdapter3 extends RecyclerView.Adapter<MyAdapter3.ViewHolder> {
     private ArrayList<StudentEntity> mData;
     private final static String TAG = "MyAdapter3";
+    private OnItemClickListener mOnItemClickListener;
 
     public MyAdapter3(ArrayList<StudentEntity> data) {
         this.mData = data;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener)
+    {
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     public void updateData(ArrayList<StudentEntity> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
+
+    public interface OnItemClickListener
+    {
+        void onItemClick(View view, int position);
+        void onItemLongClick(View view , int position);
+    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,6 +55,25 @@ public class MyAdapter3 extends RecyclerView.Adapter<MyAdapter3.ViewHolder> {
 
         holder.mTv1.setText(se.getAge().toString());
         holder.mTv2.setText(se.getName());
+
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView, pos);
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemLongClick(holder.itemView, pos);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
