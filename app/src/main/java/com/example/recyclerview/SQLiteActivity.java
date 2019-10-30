@@ -10,8 +10,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class SQLiteActivity extends AppCompatActivity {
         //insertSQL(getData());
         initData();
         initView();
+        Log.d(TAG, "onCreate");
     }
 
     public void insertSQL(StudentEntity se) {
@@ -92,8 +95,25 @@ public class SQLiteActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                Toast.makeText(SQLiteActivity.this, position + " long click",
-                        Toast.LENGTH_SHORT).show();
+                PopupMenu popup = new PopupMenu(SQLiteActivity.this, view);
+                popup.getMenuInflater().inflate(R.menu.menu_pop, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.lpig:
+                                Toast.makeText(SQLiteActivity.this,"你点了小猪~",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.bpig:
+                                Toast.makeText(SQLiteActivity.this,"你点了大猪~",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
             }
         });
     }
@@ -116,5 +136,35 @@ public class SQLiteActivity extends AppCompatActivity {
         mList.add(new StudentEntity("麻子", 25));
 
         return mList;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
     }
 }
